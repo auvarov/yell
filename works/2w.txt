@@ -1,0 +1,43 @@
+Задание 2
+Необходимо хранить информацию о книжной библиотеке в БД. 
+Интересуют лишь названия книг и авторы - больше ничего хранить не надо. 
+Обратите внимание, что у одной книги может быть несколько авторов. 
+Предложите структуру таблиц.
+
+
+
+1 вариант mysql:
+
+CREATE TABLE authors (
+	`id` SERIAL,
+	`name` VARCHAR( 255 ) NOT NULL
+) ENGINE = INNODB;
+
+CREATE TABLE  books (
+	`id` SERIAL,
+	`name` VARCHAR( 255 ) NOT NULL
+) ENGINE = INNODB;
+
+CREATE TABLE books_data (
+	`book_id` INT NOT NULL ,
+	`author_id` INT NOT NULL ,
+PRIMARY KEY (  `book_id` ,  `author_id` )
+) ENGINE = INNODB;
+
+такие же таблицы можно создать  в любой СУБД
+
+
+
+2 вариант с массивом в PosgreSQL:
+
+CREATE TABLE authors (
+    id integer NOT NULL,
+    name character varying(255)
+);
+
+CREATE TABLE books (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    autors integer[]
+);
+
